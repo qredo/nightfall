@@ -1,4 +1,11 @@
 module Main (main) where
 
+import Test.Tasty
+
+import qualified Properties
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented."
+main = defaultMain tests
+
+tests :: TestTree
+tests = testGroup "properties" Properties.tests
