@@ -32,14 +32,35 @@ Before you begin, ensure you have the following software installed on your syste
 
 1. [nix](https://nixos.org/download.html) (version 2.15.0 or later)
 
+### Examples
+
+Examples of programs described in the eDSL can be found in [the Examples folder](./src/Examples/).
 
 ### Usage
 
-To run nightfall on your local machine, follow these steps:
+For now, the [Main](./app/Main.hs) is simply a dummy program to test the [examples](./src/Examples/). Launch with
+```sh
+cabal run nightfall -- <example-name>
+```
+
+to get the MASM output on stdin, or
 
 ```sh
-nix-shell --run "cabal run"
+cabal run nightfall -- <example-name> <filepath>
 ```
+
+You can then run the generated miden programs with
+
+```sh
+miden run -a <path-to-your-generated-masm-file>
+```
+
+to save the MASM output on file (warning: override).
+
+This will obviosuly disappear when the library gets more mature.
+
+*Note*: this is first draft / alpha / experimental / subject to breaking changed even in the same day!
+Types aren't safe, "smart constructors" aren't "smart". This is just to kickstart the project
 
 ### Contributing
 We welcome contributions to nightfall! To contribute, please follow these steps:

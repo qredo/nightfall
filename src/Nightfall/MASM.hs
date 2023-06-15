@@ -80,12 +80,21 @@ ppInstr (Eq (Just n)) = [ "eq." ++ show n ]
 ppInstr (NEq Nothing) = "neq"
 ppInstr (NEq (Just n)) = [ "neq." ++ show n ]
 ppInstr Not = "not"
-
+ppInstr Lt = "lt"
+ppInstr Lte = "lte"
+ppInstr Gt = "gt"
+ppInstr Gte = "gte"
+ppInstr IsOdd = "is_odd"
 ppInstr (Add Nothing) = "add"
 ppInstr (Add (Just n)) = [ "add." ++ show n ]
 ppInstr (Sub Nothing) = "sub"
 ppInstr (Sub (Just n)) = [ "sub." ++ show n ]
+ppInstr (Mul Nothing) = "mul"
+ppInstr (Mul (Just n)) = [ "mul." ++ show n ]
+ppInstr (Div Nothing) = "div"
+ppInstr (Div (Just n)) = [ "div." ++ show n ]
 
+ppInstr Neg = "neg"
 ppInstr IAdd = "u32wrapping_add"
 ppInstr ISub = "u32wrapping_sub"
 ppInstr IMul = "u32wrapping_mul"
@@ -134,3 +143,4 @@ ppInstr Assert = "assert"
 ppInstr AssertZ = "assertz"
 
 ppInstr (Comment cmt) = [ "# " ++ unpack cmt ]
+ppInstr EmptyL = ""

@@ -59,13 +59,21 @@ data Instruction
   | SDepth -- sdepth
   | Eq (Maybe Word32) -- eq[.n]
   | NEq (Maybe Word32) -- neq[.n]
+  | Lt -- lt
+  | Lte -- lte
+  | Gt -- gt
+  | Gte -- gte
   | Not -- not
+  | IsOdd -- is_odd
   | LocStore Word32 -- loc_store.i
   | LocLoad Word32 -- loc_load.i
   | MemLoad (Maybe Word32) -- mem_load[.i]
   | MemStore (Maybe Word32) -- mem_store[.i]
   | Add (Maybe Word32) -- add[.n]
   | Sub (Maybe Word32) -- sub[.n]
+  | Mul (Maybe Word32) -- mul[.n]
+  | Div (Maybe Word32) -- div[.n]
+  | Neg
   | IAdd -- u32checked_add
   | ISub -- "u32checked_sub"
   | IMul -- u32checked_mul
@@ -110,6 +118,7 @@ data Instruction
   | Assert
   | AssertZ
   | Comment Text
+  | EmptyL     -- ability to insert empty line for spacing (purely decorative and for easier inspection)
   deriving (Eq, Ord, Show, Generic, Typeable)
 
 newtype PpMASM a = PpMASM {runPpMASM :: Writer (DList.DList String) a}
