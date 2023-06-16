@@ -16,11 +16,11 @@ import Control.Monad.State
 import Data.Map ( Map )
 import qualified Data.Map as Map
 import qualified Data.Text.Lazy as Text
-import Data.Word ( Word64, Word32 )
+import Data.Word ( Word64 )
 import Data.List ( singleton )
 import Data.Coerce ( coerce )
 import Nightfall.MASM.Miden (runMiden, KeepFile (..))
-import Nightfall.MASM (ppMASM)
+-- import Nightfall.MASM (ppMASM)
 
 -- | Index in Miden's global memory (accessed via mem_load, mem_store, etc.)
 type MemIdx = Word64
@@ -142,9 +142,6 @@ transpileStatement (Return mE) = case mE of
     Just e -> transpileExpr e
 
 transpileStatement EmptyLine = return . singleton $ MASM.EmptyL
-
-transpileStatement _ = error "transpileStatement::TODO"
-
 
 -- TODO: range check, etc.
 transpileExpr :: Expr_ -> State Context [Instruction]

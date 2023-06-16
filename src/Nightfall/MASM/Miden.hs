@@ -27,7 +27,7 @@ runMiden :: KeepFile -> Module -> IO (Either String [MidenFelt])
 runMiden keep m = withSystemTempFile "nightfall-testfile-XXX.masm" $ \fp hndl -> do
     hPutStrLn hndl (ppMASM m)
     hClose hndl
-    whenKeep keep $ \masmModSaveFp -> copyFile fp masmModSaveFp
+    _ <- whenKeep keep $ \masmModSaveFp -> copyFile fp masmModSaveFp
     (ex, midenout, midenerr) <- readProcessWithExitCode "miden" ["run", "--assembly", fp] ""
     case ex of
         ExitSuccess -> do
