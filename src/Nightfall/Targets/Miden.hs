@@ -53,10 +53,10 @@ defaultContext = Context
     , config = defaultConfig
     }
 
-runZKProgram :: ZKProgram -> IO (Either String [Word32])
+runZKProgram :: ZKProgram -> IO (Either String [Felt])
 runZKProgram prog = do
     let m = evalState (transpile prog) (defaultContext { progName = "" })
-    putStrLn (ppMASM m)
+    -- putStrLn (ppMASM m)
     runMiden DontKeep m
 
 -- | transpile a EDSL-described ZK program into a Miden Module

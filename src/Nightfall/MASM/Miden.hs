@@ -13,6 +13,8 @@ import Text.Read
 import Nightfall.MASM
 import Nightfall.MASM.Types
 
+type MidenFelt = Word64 -- actually a bit smaller, [0..(2^64 - 2^32 + 1)]
+
 data KeepFile = Keep FilePath | DontKeep
   deriving Show
 
@@ -21,7 +23,7 @@ whenKeep k f = case k of
   DontKeep -> return Nothing
   Keep fp  -> Just <$> f fp
 
-runMiden :: KeepFile -> Module -> IO (Either String [Word32])
+runMiden :: KeepFile -> Module -> IO (Either String [MidenFelt])
 runMiden keep m = withSystemTempFile "nightfall-testfile-XXX.masm" $ \fp hndl -> do
     hPutStrLn hndl (ppMASM m)
     hClose hndl
@@ -32,7 +34,7 @@ runMiden keep m = withSystemTempFile "nightfall-testfile-XXX.masm" $ \fp hndl ->
             let xs = filter ("Output: " `isPrefixOf`) (lines midenout)
             case xs of
                 [outline] -> do
-                  let mstack = (readMaybe :: String -> Maybe [Word32]) (drop 8 outline)
+                  let mstack = (readMaybe :: String -> Maybe [MidenFelt]) (drop 8 outline)
                   case mstack of
                     Nothing -> return (Left "couldn't decode stack")
                     Just stack -> return (Right stack)

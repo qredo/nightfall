@@ -53,9 +53,9 @@ prop_arith a = ioProperty $ do
                                    , Nightfall.pPublicInputs = []
                                    , Nightfall.pSecretInputs = ""
                                    }
-  print expr
+  -- print expr
   res <- runZKProgram zkProg
-  print res
+  -- print res
   case res of
     Left err -> error err
     Right xs -> case xs of

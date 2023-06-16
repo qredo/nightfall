@@ -28,7 +28,7 @@ main = do
                                 , ("collatzPriv", collatzPrivProg)
                                 , ("simpleSecret", simpleSecretProg)
                                 ]
-    
+
     args <- getArgs
 
     -- For now, trivial: argument is the name of the example to run
