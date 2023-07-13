@@ -1,1 +1,1 @@
-(import ./nix/pkgs.nix).nightfall
+(import ./nix/project.nix).haskellPackages.nightfall

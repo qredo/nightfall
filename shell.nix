@@ -1,1 +1,1 @@
-(import ./nix/pkgs.nix).shell
+(import ./nix/project.nix).shell

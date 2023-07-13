@@ -5,6 +5,7 @@
 {-# LANGUAGE OverloadedLists #-}
 module Nightfall.MASM where
 
+import Control.Monad
 import Control.Monad.Writer.Strict
 
 import qualified Data.DList as DList
